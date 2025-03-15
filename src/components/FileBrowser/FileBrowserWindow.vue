@@ -35,7 +35,10 @@ import SelectBar from "./SelectBar.vue";
 
 export default {
   name: "FileBrowserWindow",
-  props: { isVisible: Boolean },
+  props: { 
+    isVisible: Boolean,
+    volume: String,    
+   },
   components: {
     WindowTitle,
     NavigationBar,
@@ -76,6 +79,7 @@ export default {
         .then((data) => {
           // handleResponse(data);
           this.cwdResponse = data;
+          this.$emit("cwdPathUpdate", this.cwdResponse.absolutePath);
         })
         .catch((error) => {
           console.log("Something went wrong while calling the API", error);
@@ -102,6 +106,6 @@ export default {
   mounted() {
     this.fetchData();
   },
-  emits: ["file-selected", "closeFilebrowser"],
+  emits: ["file-selected", "closeFilebrowser", "cwdPathUpdate"],
 };
 </script>

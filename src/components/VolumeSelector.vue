@@ -1,36 +1,35 @@
 <template>
   <div class="volumeSelector" >
     <h2>Volume {{ volume }}</h2>
-    <ContentList v-if="isSelected" :selectedPath="tmpPath" :volume="volume" />
-     <p class="volumeSelect"> ausgewählter Pfad: {{tmpPath}} </p>
+     <p class="volumeSelect"> ausgewählter Pfad: {{selectedPath}} </p>
      <button class="volumeSelectBtn" @click="volumeClicked"> Pfad wählen </button>
   </div>
 </template>
 
 <script>
-import ContentList from './VolumeSelector/ContentList.vue'
 export default {
   name: 'VolumeSelector',
   emits: ["openFilebrowser"],
   components: {
-    ContentList
   },
   props: {
-    volume: String
+    volume: String,
+    selectedPath: String
   },
   data() {
     return {
       isSelected: false,
-      tmpPath: String
+      tmpPath: ""
     }
   },
   methods:{
-    volumeClicked(e){
+    volumeClicked(){
       if(this.isSelected){
         return;
       }
-      this.tmpPath = "C:/Hallo";
-      this.$emit("openFilebrowser",e)
+
+      // this.tmpPath = "C:/Hallo";
+      this.$emit("openFilebrowser", this.volume);
       this.isSelected = true;
     }
   }
@@ -40,7 +39,7 @@ export default {
 <style scoped>
   .volumeSelector{
     user-select: none;
-    min-height:350px;
     cursor:pointer;
+    padding: 1em;
   }
 </style>
