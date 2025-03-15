@@ -1,6 +1,9 @@
 <template>
-  <div class="filebrowser">
-    <WindowTitle :currentFolder="curFolder" />
+  <div v-if= "isVisible" class="filebrowser">
+    <WindowTitle 
+      :currentFolder="curFolder" 
+      @closeFilebrowser="$emit('closeFilebrowser',e)"
+    />
     <NavigationBar
       :cwdPath="cwdResponse.absolutePath"
       :currentFolder="curFolder"
@@ -19,6 +22,7 @@
         }
       "
     />
+    <SelectBar :currentPath="cwdResponse.absolutePath" @closeFilebrowser="$emit('closeFilebrowser',e)"/>
   </div>
 </template>
 
@@ -26,13 +30,17 @@
 import WindowTitle from "./WindowTitle.vue";
 import NavigationBar from "./NavigationBar.vue";
 import FolderContentArea from "./FolderContentArea.vue";
+import SelectBar from "./SelectBar.vue";
+
+
 export default {
   name: "FileBrowserWindow",
-  props: {},
+  props: { isVisible: Boolean },
   components: {
     WindowTitle,
     NavigationBar,
     FolderContentArea,
+    SelectBar,
   },
   computed: {
     curFolder() {
@@ -49,6 +57,7 @@ export default {
       cwd: ".",
       search: "",
       cwdHistory: ["."],
+      // isOpen: true,
     };
   },
   methods: {
@@ -86,9 +95,13 @@ export default {
       this.cwd = this.cwdHistory[this.cwdHistory.length - 1];
       this.fetchData();
     },
+    // closeFilebrowser(){
+    //   this.isOpen = false;
+    // }
   },
   mounted() {
     this.fetchData();
   },
+  emits: ["file-selected", "closeFilebrowser"],
 };
 </script>

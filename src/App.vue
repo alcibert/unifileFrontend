@@ -4,10 +4,10 @@
   <div class="container">
     <h1>Unifile</h1>
     <div class="row">
-      <VolumeSelector class="volSelA col-md-6" volume="A" />
-      <VolumeSelector class="volSelB col-md-6" volume="B" />
+      <VolumeSelector class="volSelA col-md-6" volume="A" @openFilebrowser="isOpen = true" />
+      <VolumeSelector class="volSelB col-md-6" volume="B" @openFilebrowser="isOpen = true"/>
     </div>
-    <FileBrowserWindow />
+    <FileBrowserWindow @closeFilebrowser="isOpen = false" :isVisible = "isOpen"/>
   </div>
 </template>
 
@@ -20,8 +20,13 @@ export default {
   components: {
     VolumeSelector,
     FileBrowserWindow
-  }
-}
+  },
+  data(){
+    return{
+      isOpen: false,
+    };
+  },
+};
 </script>
 
 <style>
