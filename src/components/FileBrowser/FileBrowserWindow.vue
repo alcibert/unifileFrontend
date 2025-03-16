@@ -22,7 +22,7 @@
         }
       "
     />
-    <SelectBar :currentPath="cwdResponse.absolutePath" @closeFilebrowser="$emit('closeFilebrowser',e)"/>
+    <SelectBar :currentPath="cwdResponse.absolutePath" @pathSelected="onPathSelected"/>
   </div>
 </template>
 
@@ -79,7 +79,6 @@ export default {
         .then((data) => {
           // handleResponse(data);
           this.cwdResponse = data;
-          this.$emit("cwdPathUpdate", this.cwdResponse.absolutePath);
         })
         .catch((error) => {
           console.log("Something went wrong while calling the API", error);
@@ -99,6 +98,11 @@ export default {
       this.cwd = this.cwdHistory[this.cwdHistory.length - 1];
       this.fetchData();
     },
+    onPathSelected() {
+      this.$emit("cwdPathUpdate", this.cwdResponse.absolutePath);
+      this.$emit("closeFilebrowser");
+    }
+
     // closeFilebrowser(){
     //   this.isOpen = false;
     // }
@@ -106,6 +110,6 @@ export default {
   mounted() {
     this.fetchData();
   },
-  emits: ["file-selected", "closeFilebrowser", "cwdPathUpdate"],
+  emits: ["closeFilebrowser", "cwdPathUpdate"]
 };
 </script>
