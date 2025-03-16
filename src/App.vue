@@ -2,7 +2,9 @@
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   <div class="container">
-    <h1>Unifile</h1>
+    <button @click="switchLanguage('de')">🇩🇪 Deutsch</button>
+    <button @click="switchLanguage('en')">🇬🇧 English</button>
+    <h1>{{ $t("welcome") }}</h1>
     <div class="row">
       <VolumeSelector class="volSelA col-md-6" volume="A" @openFilebrowser="onOpenFilebrowser" :selectedPath="selectedPaths['A']" />
       <VolumeSelector class="volSelB col-md-6" volume="B" @openFilebrowser="onOpenFilebrowser" :selectedPath="selectedPaths['B']"/>
@@ -35,12 +37,15 @@ export default {
       // if (this.currentVolume=="A"){this.newPathA = newPath;}
       // else if (this.currentVolume=="B"){this.newPathB = newPath;}
         this.selectedPaths = { ...this.selectedPaths, [this.currentVolume]: newPath };
-        console.log("selectedPaths: " + this.selectedPaths["A"] + this.selectedPaths["B"]);
     },
     onOpenFilebrowser(volume){
       this.isOpen= true;
       console.log("Volume= " + volume);
       this.currentVolume = volume;
+    },
+    switchLanguage(lang) {
+      this.$i18n.locale = lang;
+      localStorage.setItem("lang", lang); //Spracheinstellung in local Storage speichern
     }
   }
 };
