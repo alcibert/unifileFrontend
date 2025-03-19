@@ -31,9 +31,10 @@ export default {
       this.isSelected = true;
     },
     scanContent(){
-        let url = `http://localhost:8080/api/v1.0/directory/scan/${this.volume}?path=${this.selectedPath}`;
+        let url = `http://localhost:8080/api/v1.0/directory/scan/${this.volume}?path=${encodeURIComponent(this.selectedPath)}`;
         fetch(url).then(response => {
           if (response.status === 200) {this.isScanned = true;}
+          else {console.warn(`HTTP Response not ok: ${response?.status}`);}
         // fetch(url).then(response => response.json()).then((data) => {
         //     this.contentElement = data;
         //     console.log("fetchContent from VolumeSelector"+ this.volume + ": " + this.contentElement);
