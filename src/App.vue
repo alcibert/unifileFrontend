@@ -6,30 +6,43 @@
     <button @click="switchLanguage('en')">🇬🇧 English</button>
     <h1>{{ $t("welcome") }}</h1>
     <div class="row">
-      <VolumeSelector class="volSelA col-md-6" volume="A" @openFilebrowser="onOpenFilebrowser" :selectedPath="selectedPaths['A']" />
-      <VolumeSelector class="volSelB col-md-6" volume="B" @openFilebrowser="onOpenFilebrowser" :selectedPath="selectedPaths['B']"/>
+      <VolumeSelector class="volSelA col-md-6" volume="A" 
+        @openFilebrowser="onOpenFilebrowser" 
+        @scanned="onScanned" 
+        :selectedPath="selectedPaths['A']"
+      />
+      <VolumeSelector class="volSelB col-md-6" volume="B" 
+        @openFilebrowser="onOpenFilebrowser" 
+        @scanned="onScanned" 
+        :selectedPath="selectedPaths['B']"
+      />
     </div>
-    <FileBrowserWindow @closeFilebrowser="isOpen = false" @cwdPathUpdate="updateCurrentPath" :isVisible = "isOpen"/>
+    <ConflictList v-if="this.allScanned" class ="conflictList" />
+    <FileBrowserWindow @closeFilebrowser="onCloseFilebrowser" @cwdPathUpdate="updateCurrentPath" :isVisible = "isOpen"/>
   </div>
 </template>
 
 <script>
 import VolumeSelector from './components/VolumeSelector.vue';
 import FileBrowserWindow from "./components/FileBrowser/FileBrowserWindow.vue";
+import ConflictList from './components/ConflictList/ConflictList.vue';
 
 export default {
   name: 'App',
   components: {
+    ConflictList,
     VolumeSelector,
     FileBrowserWindow,
   },
   data(){
     return{
       isOpen: false,
-      isSelected: true,
       currentVolume: "",
       volume: String,
       selectedPaths: {},
+      isScannedA: false,
+      isScannedB: false,
+      allScanned: false,
     };
   },
   methods:{
@@ -43,9 +56,18 @@ export default {
       console.log("Volume= " + volume);
       this.currentVolume = volume;
     },
+    onCloseFilebrowser(){
+      this.isOpen = false;
+
+    },
     switchLanguage(lang) {
       this.$i18n.locale = lang;
       localStorage.setItem("lang", lang); //Spracheinstellung in local Storage speichern
+    },
+    onScanned(volume){
+      if (volume == "A") {this.isScannedA = true;}
+      else if (volume =="B") {this.isScannedB = true;}
+      if (this.isScannedA && this.isScannedB == true) {this.allScanned = true;}
     }
   }
 };

@@ -1,20 +1,14 @@
 import {createI18n} from 'vue-i18n';
-
-const messages = {
-  en: {
-    welcome: "Welcome to Unifile",
-    selectPath: "select path",
-  },
-  de: {
-    welcome: "Willkommen bei Unifile",
-    selectPath: "Pfad wählen",
-  }
-};
+import en from './locales/en.json';
+import de from './locales/de.json';
 
 const i18n = createI18n({
   locale: localStorage.getItem('lang') || 'de', 
-  fallbackLocale: 'en', 
-  messages,
+  fallbackLocale: 'en',
+  messages: {
+    en,
+    de
+  }
 });
 
 export default i18n;
