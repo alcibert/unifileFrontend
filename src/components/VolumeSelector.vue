@@ -19,6 +19,7 @@ export default {
   data() {
     return {
       isSelected: false,
+      isScanned: false,
     }
   },
   methods:{
@@ -29,20 +30,21 @@ export default {
       this.$emit("openFilebrowser", this.volume);
       this.isSelected = true;
     },
-    //Macht keinen Sinn, dass VolumeSelector KonfliktListe fetcht? In App oder ConflictList fetchen wenn beide isSelected?
-    fetchContent(){
+    scanContent(){
         let url = `http://localhost:8080/api/v1.0/directory/scan/${this.volume}?path=${this.selectedPath}`;
-        fetch(url).then(response => response.json()).then((data) => {
-            this.contentElement = data;
-            console.log("fetchContent from VolumeSelector"+ this.volume + ": " + this.contentElement);
+        fetch(url).then(response => {
+          if (response.status === 200) {this.isScanned = true;}
+        // fetch(url).then(response => response.json()).then((data) => {
+        //     this.contentElement = data;
+        //     console.log("fetchContent from VolumeSelector"+ this.volume + ": " + this.contentElement);
         });
     }
   },
-  // watch: {
-  //   selectedPath(newValue, oldValue) {
-  //     this.selectedPath = newValue;
-  //   }
-  // },
+  watch: {
+    selectedPath() {
+      this.scanContent();
+    }
+  },
 }
 </script>
 
