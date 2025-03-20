@@ -1,6 +1,9 @@
 <template>
     <div class="selectBar">
-        <span class="selectBarPath">{{currentPath}}</span>
+        <div>
+          {{ $t("selectFolder") }}
+          <span class="selectBarPath">{{currentPath}}</span>
+        </div>
         <button class="selectBarBtn" @click="pathSelected">{{ $t("selectPath") }}</button>
     </div>
   </template>

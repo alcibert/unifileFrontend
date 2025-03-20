@@ -18,17 +18,12 @@ export default {
   },
   data() {
     return {
-      isSelected: false,
       isScanned: false,
     }
   },
   methods:{
     volumeClicked(){
-      if(this.isSelected){
-        return;
-      }
       this.$emit("openFilebrowser", this.volume);
-      this.isSelected = true;
     },
     scanContent(){
         let url = `http://localhost:8080/api/v1.0/directory/scan/${this.volume}?path=${encodeURIComponent(this.selectedPath)}`;
@@ -56,7 +51,6 @@ export default {
 <style scoped>
   .volumeSelector{
     user-select: none;
-    cursor:pointer;
     padding: 1em;
   }
 </style>

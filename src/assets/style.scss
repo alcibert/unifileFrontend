@@ -9,9 +9,11 @@
     border: 1px solid var(--darkgray);
     min-height: 200px;
     height:600px;
-    min-width: 400px;
-    width: 100%;
-    position:relative;
+    min-width: 300px;
+    width: 80vw;
+    left:3rem;
+    top:3rem;
+    position:absolute;
     background-color: var(--lightgray);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     overflow: hidden;
@@ -177,11 +179,6 @@
     }
 }
 
-.selectBarPath{
-    color: lightgray;
-    margin-right: 2em;
-}
-
 .contentScroll{
     overflow-y: scroll;
 }
@@ -261,4 +258,34 @@
 }
 ::-webkit-scrollbar-thumb{
     background: var(--light);
+}
+
+.selectBar{
+    background-color: black;
+    padding: .5em 1em;
+    display: flex;
+    justify-content: space-between;
+    color: lightgray;
+    position:relative;
+    bottom:0px;
+    width:100%;
+    height:5rem;
+    .selectBarPath{
+        margin-right: 2em;
+        border: 1px solid gray;
+        width: 80%;
+        padding-inline: 1em;
+        padding-bottom: .2em;
+    }
+    .selectBarBtn{
+        border-radius:0px;
+        border:2px solid lightgray;
+        background:transparent;
+        color:lightgray;
+        padding-inline:1.5em;
+        &:hover,
+        &:focus{
+            background-color:#ffffff38;
+        }
+    }
 }

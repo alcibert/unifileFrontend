@@ -1,5 +1,9 @@
 {
     "welcome": "Willkommen bei Unifile",
     "selectPath": "Pfad auswählen",
-    "selectedPath": "ausgewählter Pfad: "
+    "selectedPath": "ausgewählter Pfad: ",
+    "selectFolder": "Ordner wählen",
+    "takeA": "Links behalten",
+    "takeB": "Rechts behalten",
+    "ignore": "Ingnorieren"
   }

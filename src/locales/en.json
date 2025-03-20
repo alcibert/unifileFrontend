@@ -1,5 +1,9 @@
 {
     "welcome": "Welcome to Unifile",
     "selectPath": "select path",
-    "selectedPath": "selected path: "
+    "selectedPath": "selected path: ",
+    "selectFolder": "Select Directory",
+    "takeA": "Keep left",
+    "takeB": "Keep right",
+    "ignore": "ignore"
   }

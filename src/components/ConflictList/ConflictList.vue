@@ -2,7 +2,7 @@
     <div class="contentList">
         <p>Inhalt</p>
         <div v-if="hasConflicts">
-            <ConflictListElement v-for="conflict in conflicts" :key="conflict.id" :element="conflict"/>
+            <ConflictListElement v-for="conflict in conflicts" :key="conflict.id" :element="conflict" @merge-changed="changeMerge"/>
         </div>
     </div>
     </template>
@@ -39,6 +39,9 @@
                 console.log("fetched Conflict List");
                 console.log(this.conflicts);
             });
+        },
+        changeMerge(e){
+            e[0].merge = e[1];
         }
     }
     }
