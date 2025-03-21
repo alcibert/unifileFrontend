@@ -2,8 +2,8 @@
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   <div class="container">
-    <button @click="switchLanguage('de')">🇩🇪 Deutsch</button>
-    <button @click="switchLanguage('en')">🇬🇧 English</button>
+    <button class="btn" @click="switchLanguage('de')">🇩🇪 Deutsch</button>
+    <button class="btn" @click="switchLanguage('en')">🇬🇧 English</button>
     <h1>{{ $t("welcome") }}</h1>
     <div class="row">
       <VolumeSelector class="volSelA col-md-6" volume="A" 
@@ -82,5 +82,8 @@ export default {
   }
   .volSelB{
     background-color: lightcoral;
+  }
+  .btn{
+    margin-right:1em;
   }
 </style>

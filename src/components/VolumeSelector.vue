@@ -1,8 +1,8 @@
 <template>
   <div class="volumeSelector" >
     <h2>Volume {{ volume }}</h2>
-     <p class="volumeSelect"> {{$t("selectedPath")}} {{selectedPath}} </p>
-     <button class="volumeSelectBtn" @click="volumeClicked"> {{ $t("selectPath") }} </button>
+     <span class="volumeSelect"> {{$t("selectedPath")}} {{selectedPath}} </span>
+     <button class="btn volumeSelectBtn" @click="volumeClicked"> {{ $t("selectPath") }} </button>
   </div>
 </template>
 
@@ -52,5 +52,8 @@ export default {
   .volumeSelector{
     user-select: none;
     padding: 1em;
+  }
+  .volumeSelect{
+    margin-right: 2em;
   }
 </style>

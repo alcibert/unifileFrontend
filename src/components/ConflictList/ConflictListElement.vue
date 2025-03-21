@@ -4,9 +4,9 @@
       <span>{{ getSize(element.fileA.size) }}</span>
       <span>{{ getTimestamp(element.fileA.lastModified) }}</span>
       <div class="conflictChoiceSelector">
-        <button @click="setTakeA">{{ takeA }}</button>
-        <button @click="setIgnore">{{ ignore }}</button>
-        <button @click="setTakeB">{{ takeB }}</button>
+        <button class="btn" @click="setTakeA">{{ takeA }}</button>
+        <button class="btn" @click="setIgnore">{{ ignore }}</button>
+        <button class="btn" @click="setTakeB">{{ takeB }}</button>
       </div>
       <span title="Open in File Explorer" @click="openHost(element.fileA)">{{ element.fileB.name }}</span>
       <span>{{ getSize(element.fileB.size) }}</span>

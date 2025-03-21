@@ -1,8 +1,8 @@
 <template>
   <div class="mergeStarter">
-    <button @click="mergeFromTo('b', 'a')">{{ $t('mergeToA') }}</button>
-    <button @click="sync()">{{ $t('sync') }}</button>
-    <button @click="mergeFromTo('a', 'b')">{{ $t('mergeToB') }}</button>
+    <button class="btn" @click="mergeFromTo('b', 'a')">{{ $t('mergeToA') }}</button>
+    <button class="btn" @click="sync()">{{ $t('sync') }}</button>
+    <button class="btn" @click="mergeFromTo('a', 'b')">{{ $t('mergeToB') }}</button>
   </div>
 </template>
 
