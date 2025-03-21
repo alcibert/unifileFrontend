@@ -5,5 +5,8 @@
     "selectFolder": "Ordner wählen",
     "takeA": "Links behalten",
     "takeB": "Rechts behalten",
-    "ignore": "Ingnorieren"
+    "ignore": "Ingnorieren",
+    "mergeToA": "Alles in A vereinen",
+    "mergeToB": "Alles in B vereinen",
+    "sync": "Beide Volumen synchonisieren"
   }

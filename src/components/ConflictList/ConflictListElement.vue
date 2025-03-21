@@ -161,6 +161,9 @@
       border-bottom: 1px solid black;
       margin-block:1em;
     }
+    button:not(:last-child){
+      margin-right:.5em;
+    }
 
   </style>
   

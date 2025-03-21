@@ -19,6 +19,7 @@
     </div>
     <ConflictList v-if="this.allScanned" class ="conflictList" />
     <FileBrowserWindow @closeFilebrowser="onCloseFilebrowser" @cwdPathUpdate="updateCurrentPath" :isVisible = "isOpen"/>
+    <MergeStarter />
   </div>
 </template>
 
@@ -26,6 +27,7 @@
 import VolumeSelector from './components/VolumeSelector.vue';
 import FileBrowserWindow from "./components/FileBrowser/FileBrowserWindow.vue";
 import ConflictList from './components/ConflictList/ConflictList.vue';
+import MergeStarter from './components/MergeStarter.vue';
 
 export default {
   name: 'App',
@@ -33,6 +35,7 @@ export default {
     ConflictList,
     VolumeSelector,
     FileBrowserWindow,
+    MergeStarter
   },
   data(){
     return{

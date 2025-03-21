@@ -5,5 +5,8 @@
     "selectFolder": "Select Directory",
     "takeA": "Keep left",
     "takeB": "Keep right",
-    "ignore": "ignore"
+    "ignore": "ignore",
+    "mergeToA": "Merge everything to A",
+    "mergeToB": "Merge everything to B",
+    "sync": "Synchonize both Volumes"
   }
