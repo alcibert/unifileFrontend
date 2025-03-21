@@ -2,7 +2,7 @@
   <div class="contentRow" @dblclick="elementClicked(element)">
     <span :class="'name ' + elementClass">{{ element.name }}</span>
     <span class="modified">{{ elementModifiedFormated }}</span>
-    <span class="type">{{ element.isDirectory }}</span>
+    <span class="type">{{ elementType }}</span>
     <span class="size">{{ elementSizeFormated }}</span>
   </div>
 </template>
@@ -65,6 +65,14 @@ export default {
       }
       let ext = this.element.name.split(".");
       return ext[ext.length - 1];
+    },
+    elementType(){
+      if (this.element.isDirectory){
+        return "Dateiordner";
+      }
+      let type = this.element.name.split(".");
+      type = type[type.length -1];
+      return `.${type} Datei`;
     },
   },
 };

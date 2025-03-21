@@ -1,6 +1,6 @@
 <template>
     <div class="conflictListElement" :class="[element.merge]">
-      <span>{{ element.fileA.name }}</span>
+      <span title="Open in File Explorer" @click="openHost(element.fileA)">{{ element.fileA.name }}</span>
       <span>{{ getSize(element.fileA.size) }}</span>
       <span>{{ getTimestamp(element.fileA.lastModified) }}</span>
       <div class="conflictChoiceSelector">
@@ -8,7 +8,7 @@
         <button @click="setIgnore">{{ ignore }}</button>
         <button @click="setTakeB">{{ takeB }}</button>
       </div>
-      <span>{{ element.fileB.name }}</span>
+      <span title="Open in File Explorer" @click="openHost(element.fileA)">{{ element.fileB.name }}</span>
       <span>{{ getSize(element.fileB.size) }}</span>
       <span>{{ getTimestamp(element.fileB.lastModified) }}</span>
     </div>
@@ -123,6 +123,11 @@
           maximumSignificantDigits: 3,
         }).format(shortSize);
         return `${shortSize} ${sizeEnding}`;
+      },
+      openHost(file){
+        let path = file.absolutePath.split(file.name)[0];
+        let url = `http://localhost:8080/api/v1.0/directory/openHostSystem?path=${encodeURIComponent(path)}`;
+        fetch(url);
       }
     },
     computed: {
@@ -163,6 +168,9 @@
     }
     button:not(:last-child){
       margin-right:.5em;
+    }
+    span[title]{
+      cursor:pointer;
     }
 
   </style>
