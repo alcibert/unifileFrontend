@@ -8,7 +8,7 @@
         <button class="btn" @click="setIgnore">{{ ignore }}</button>
         <button class="btn" @click="setTakeB">{{ takeB }}</button>
       </div>
-      <span title="Open in File Explorer" @click="openHost(element.fileA)">{{ element.fileB.name }}</span>
+      <span title="Open in File Explorer" @click="openHost(element.fileB)">{{ element.fileB.name }}</span>
       <span>{{ getSize(element.fileB.size) }}</span>
       <span>{{ getTimestamp(element.fileB.lastModified) }}</span>
     </div>
